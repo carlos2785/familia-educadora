@@ -8,7 +8,7 @@ const port=3000;
 conectionBD();
 /////////////Padres/////////////////
 app.use('',require('./router/padres'));
-
+app.use('',require('./router/estudiantes'));
 app.listen(port,()=>{
     console.log('app funcionando..')
 });

@@ -37,7 +37,8 @@ router.post('/padres', async function(req, res) {
             return res.status(400).send('El ID ya está registrado');
         }
 
-        const insertPadres = `INSERT INTO padres (id, nombres, apellidos) VALUES (${req.body.id}, '${req.body.nombres}', '${req.body.apellidos}');`;
+        const insertPadres = `INSERT INTO padres (id, nombres, apellidos) 
+        VALUES (${req.body.id}, '${req.body.nombres}', '${req.body.apellidos}');`;
 
         await pool.query(insertPadres);
         res.status(201).send('Datos del padre registrados correctamente');
