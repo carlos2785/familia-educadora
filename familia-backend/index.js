@@ -9,6 +9,9 @@ conectionBD();
 /////////////Padres/////////////////
 app.use('',require('./router/padres'));
 app.use('',require('./router/estudiantes'));
+app.use('',require('./router/notas'));
+app.use('',require('./router/consulta'));
+
 app.listen(port,()=>{
     console.log('app funcionando..')
 });
