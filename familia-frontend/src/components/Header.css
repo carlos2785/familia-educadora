@@ -1,0 +1,9 @@
+nav.navbar.bg-primary {
+    background-color: #183f66 !important;
+    font-size: 20px;
+}
+.img-fluid{
+    width: 90px;
+    border-radius: 30%;
+    /*height: 50px;*/
+}

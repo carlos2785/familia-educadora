@@ -1,6 +1,7 @@
 const {Router}=require('express');
-const router=Router();
-const { Pool } = require('pg');
+const router= Router();
+const {Pool}=require('pg');
+
 
 const pool = new Pool({
     user: 'default',
