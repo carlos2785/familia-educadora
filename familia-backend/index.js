@@ -1,12 +1,13 @@
 const express=require('express');
 const app=express();
+const cors=require('cors');
 app.use(express.json());
 //const{Pool}=require('pg');
 const conectionBD = require('./BD/conexionBD');
 const router = require('./router/padres');
 require('dotenv').config();
 const port=process.env.PORT;
-
+app.use(cors());
 conectionBD();
 /////////////Padres/////////////////
 app.use('',require('./router/padres'));
