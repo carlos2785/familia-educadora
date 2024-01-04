@@ -13,7 +13,7 @@ const pool = new Pool({
 
 //////////////////GET//////////////////////
 router.get('/fechas', async function(req,res){
-    const selectFechas=`SELECT DISTINCT fecha FROM notas;`
+    const selectFechas=`SELECT DISTINCT to_char(fecha, 'YYYY-MM-DD') as fecha_formateada FROM notas;`
     try {
         const {rows}=await pool.query(selectFechas);
         res.status(201).send({rows});
