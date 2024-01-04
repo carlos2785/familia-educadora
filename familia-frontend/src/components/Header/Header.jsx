@@ -22,10 +22,13 @@ export const Header =()=>{
                             <NavLink className="nav-link" activeClassName="active" exact aria-current="page" to="/">Registro</NavLink>
                         </li>
                         <li className="nav-item">
-                            <NavLink className="nav-link" activeClassName="active" exact aria-current="page" to="/usuarios">Estudiantes</NavLink>
+                            <NavLink className="nav-link" activeClassName="active" exact aria-current="page" to="/notas">Notas</NavLink>
                         </li>
                         <li className="nav-item">
-                            <NavLink className="nav-link" activeClassName="active" exact aria-current="page" to="/usuarios">Padres</NavLink>
+                            <NavLink className="nav-link" activeClassName="active" exact aria-current="page" to="/estudiantes">Estudiantes</NavLink>
+                        </li>
+                        <li className="nav-item">
+                            <NavLink className="nav-link" activeClassName="active" exact aria-current="page" to="/padres">Padres</NavLink>
                         </li>
                     </ul>
                     

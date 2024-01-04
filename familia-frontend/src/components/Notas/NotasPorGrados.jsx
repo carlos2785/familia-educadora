@@ -1,9 +1,9 @@
 import React,{useState,useEffect} from 'react';
 import { BuscarNotas } from './BuscarNotas';
-import { obtenerFecha, obtenerGrado } from '../funciones/funciones';
+import { obtenerFecha, obtenerGrado } from '../../funciones/funciones';
 
 
-export const MostrarRegistro=()=>{
+export const NotasPorGrados=()=>{
 
     const [selectFecha, setSelectFecha] = useState();//variable de estado para guardar la fecha seleccionada
     const [selectGrado, setSelectGrado] = useState();//variable de estado para guardar el grado seleccionado
@@ -24,11 +24,12 @@ export const MostrarRegistro=()=>{
     const handleSetSelectFecha=(e)=>{
         const SelectFecha=e.target.value;//si selecciona una lista dentro del select, toma ese valor y lo guarda en la variable de estado
         setSelectFecha(SelectFecha);
-        //console.log(selectFecha);
+        //console.log(SelectFecha);
     }
     const handleSetSelectGrado=(e)=>{
         const SelectGrado=e.target.value;//si selecciona una lista dentro del select, toma ese valor y lo guarda en la variable de estado
         setSelectGrado(SelectGrado);
+        
     }
 
     return(
@@ -45,7 +46,7 @@ export const MostrarRegistro=()=>{
                             >
                                 <option >Fecha</option>
                                 {fechas.map((fecha, index) => (
-                                    <option key={index} value={fecha.fecha}>{fecha.fecha}</option>
+                                    <option key={index} value={fecha.fecha_formateada}>{fecha.fecha_formateada}</option>
                                 ))}
                             </select>
                         </label>
@@ -69,9 +70,7 @@ export const MostrarRegistro=()=>{
             <div>
             <BuscarNotas
                 selectFecha={selectFecha}
-                setSelectFecha={setSelectFecha}
                 selectGrado={selectGrado}
-                setSelectGrado={setSelectGrado}
             />
             </div>
         </div> 
