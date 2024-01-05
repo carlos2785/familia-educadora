@@ -1,12 +1,17 @@
-import React, { useEffect,useMemo } from "react";
-import { obtenerListaTodosEstudiantes } from "../../funciones/funciones";
+import React, { useEffect,useMemo,useState } from "react";
+import { obtenerListaTodosEstudiantes } from "./funciones";
+import './estudiantes.css'
+import { VentanaModal } from "./VentanaModal";
 
 export const TablaEstudiantes=({listaTodosEstudiantes,setListaTodosEstudiantes,selectGrado})=>{
 
+    const [mostrarModal, setMostrarModal]=useState(false);
+    const [estudianteSeleccionado, setEstudianteSeleccionado] = useState(null);
+
     useEffect(()=>{
         obtenerListaTodosEstudiantes(setListaTodosEstudiantes);
-    },[setListaTodosEstudiantes]);
-
+    },[setListaTodosEstudiantes]); 
+    
     //console.log("Datos de listaTodosEstudiantes:", listaTodosEstudiantes);    
     const estudiantesFiltrados = useMemo(() => {
         if (!selectGrado || selectGrado === 'Grado') {
@@ -16,9 +21,24 @@ export const TablaEstudiantes=({listaTodosEstudiantes,setListaTodosEstudiantes,s
         }
     }, [listaTodosEstudiantes, selectGrado]);
 
+    const actualizarEstudiante = ()=>{
+
+    }
+
+    const handleMostrarModal=(estudiante)=>{
+        setEstudianteSeleccionado(estudiante);
+        setMostrarModal(true);
+    }
+    //console.log(estudianteSeleccionado,mostrarModal);
+    const handleCerrarModal=()=>{
+        setEstudianteSeleccionado(null);
+        setMostrarModal(false);
+    }
+
+
     return(
         <div className="mt-3 mb-3 row row-cols-1 row-cols-md-1 g-4">
-            <div>
+            <div className="col">
                 <table className="table">
                     <thead>
                         <tr>
@@ -27,22 +47,38 @@ export const TablaEstudiantes=({listaTodosEstudiantes,setListaTodosEstudiantes,s
                         <th scope="col">Nombres</th>
                         <th scope="col">Grado</th>
                         <th scope="col">Id_padres</th>
+                        <th>Opciones</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {estudiantesFiltrados.map((lista,id)=>(
+                        {estudiantesFiltrados.map((estudiante,id)=>(
                         <tr key={id}>
-                                <td>{lista.id}</td>
-                                <td>{lista.apellidos}</td>
-                                <td>{lista.nombres}</td>
-                                <td>{lista.grado}</td>
-                                <td>{lista.id_padres}</td>
+                                <td>{estudiante.id}</td>
+                                <td>{estudiante.apellidos}</td>
+                                <td>{estudiante.nombres}</td>
+                                <td>{estudiante.grado}</td>
+                                <td>{estudiante.id_padres}</td>
+                                <td>
+                                    <button type="button" className="btn btn-warning"
+                                    onClick={()=>handleMostrarModal(estudiante)}
+                                    >Actualizar</button>
+                                    <button type="button" className="btn btn-danger">Eliminar</button>
+                                </td>
                         </tr>
                         ))}
                     </tbody>
                 </table>
+                {mostrarModal && estudianteSeleccionado && (
+                <VentanaModal
+                student={estudianteSeleccionado}
+                close={handleCerrarModal}
+                open={mostrarModal}
+                listaTodosEstudiantes={listaTodosEstudiantes}
+                setListaTodosEstudiantes={setListaTodosEstudiantes}
+                />  
+                )}
+                
             </div>
-
         </div>
     );
 }

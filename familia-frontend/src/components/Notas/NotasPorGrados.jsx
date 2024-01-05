@@ -1,6 +1,6 @@
 import React,{useState,useEffect} from 'react';
 import { BuscarNotas } from './BuscarNotas';
-import { obtenerFecha, obtenerGrado } from '../../funciones/funciones';
+import { obtenerFecha, obtenerGrado } from '../Estudiantes/funciones';
 
 
 export const NotasPorGrados=()=>{

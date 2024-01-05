@@ -1,7 +1,8 @@
 import React,{useState,useEffect} from 'react';
 import { BuscarGrado } from './BuscarGrado';
 import { TablaEstudiantes } from './TablaEstudiantes';
-import { obtenerGrado } from '../../funciones/funciones';
+import { obtenerGrado } from './funciones';
+import { obtenerListaTodosEstudiantes } from "./funciones";
 
 export const ListarEstudiantes=()=>{
     const [listaTodosEstudiantes,setListaTodosEstudiantes]=useState([]);
@@ -9,7 +10,10 @@ export const ListarEstudiantes=()=>{
     const [grados, setGrados] = useState([]);//variable de estado para guardar los grados
     
     useEffect(()=>{
-        //obtenerFecha(setFechas);
+        obtenerListaTodosEstudiantes(setListaTodosEstudiantes);
+    },[])
+
+    useEffect(()=>{
         obtenerGrado(setGrados);
     },[])
 
