@@ -32,6 +32,4 @@ export const obtenerListaTodosEstudiantes=async(setListaTodosEstudiantes)=>{
     } catch (error) {
         console.error("Error al obtener los grados:", error);
     }
-    
-    //console.log(peticionListaTodosEstudiantes.data);
-}
+};

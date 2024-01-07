@@ -9,13 +9,14 @@ export const ListarEstudiantes=()=>{
     const [selectGrado, setSelectGrado] = useState();//variable de estado para guardar el grado seleccionado
     const [grados, setGrados] = useState([]);//variable de estado para guardar los grados
     
+
     useEffect(()=>{
         obtenerListaTodosEstudiantes(setListaTodosEstudiantes);
     },[])
 
     useEffect(()=>{
         obtenerGrado(setGrados);
-    },[])
+    },[setGrados]) 
 
     return(
         <div className='container'>

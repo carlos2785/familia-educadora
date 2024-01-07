@@ -5,7 +5,7 @@ import {obtenerListaTodosEstudiantes} from "./funciones";
 export const VentanaModal = ({close,open,student,setListaTodosEstudiantes,listaTodosEstudiantes})=>{
     const [listaEstudiantes, setListaEstudiantes] = useState([]);
     const [nuevosDatos,setNuevosDatos]=useState({
-        apellidos: student.apellidos,
+        apellidos: student.apellidos, //propiedad name del input
         nombres: student.nombres,
         grado: student.grado,
         id_padres: student.id_padres,
@@ -13,7 +13,7 @@ export const VentanaModal = ({close,open,student,setListaTodosEstudiantes,listaT
 
     useEffect(() => {
         if (open) {
-            obtenerListaTodosEstudiantes(setListaEstudiantes);
+            obtenerListaTodosEstudiantes(setListaEstudiantes);//trae los datos del estudiante y los pasa al value del input
         }
     }, [open]);
     //esta función toma el valor del input y le actualiza a lo que el usuario necesita
@@ -59,13 +59,13 @@ export const VentanaModal = ({close,open,student,setListaTodosEstudiantes,listaT
                         value={nuevosDatos.nombres} onChange={handleInputChange}/>
                     </div>
                     <div className="form-group">
-                        <label htmlFor="grado">Nombres</label>
+                        <label htmlFor="grado">Grado</label>
                         <input type="text" className="form-control" id="grado" name="grado" 
                         value={nuevosDatos.grado} onChange={handleInputChange}/>
                     </div>
                     <div className="form-group">
-                        <label htmlFor="id_padres">Nombres</label>
-                        <input type="text" className="form-control" id="id_padres" name="id_padres" 
+                        <label htmlFor="id_padres">Id_Padres</label>
+                        <input type="number" className="form-control" id="id_padres" name="id_padres" 
                         value={nuevosDatos.id_padres} onChange={handleInputChange}/>
                     </div>
                 </div>
