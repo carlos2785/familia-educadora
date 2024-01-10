@@ -3,6 +3,8 @@ import { obtenerListaTodosEstudiantes } from "./funciones";
 import './estudiantes.css'
 import { VentanaModal } from "./VentanaModal";
 import { CrearEstudiante } from "./ModalCrearEstudiante";
+import axios from 'axios';
+import Swal from 'sweetalert2';
 
 export const TablaEstudiantes=({listaTodosEstudiantes,setListaTodosEstudiantes,selectGrado})=>{
 
@@ -15,7 +17,7 @@ export const TablaEstudiantes=({listaTodosEstudiantes,setListaTodosEstudiantes,s
     },[setListaTodosEstudiantes]); 
 
     //console.log("Datos de listaTodosEstudiantes:", listaTodosEstudiantes);    
-    const estudiantesFiltrados = useMemo(() => {
+    const estudiantesFiltrados = useMemo(() => {//useMemo=se ejecuta solo cuando selectgrado cambia y mantiene ese valor hasta que haya algun cambio
         if (!selectGrado || selectGrado === 'Grado') {
             return listaTodosEstudiantes;
         } else {
@@ -39,6 +41,20 @@ export const TablaEstudiantes=({listaTodosEstudiantes,setListaTodosEstudiantes,s
     const handleCerrarModalCrear=()=>{
         setModalCrear(false);
     };
+    const handleEliminarEstudiante=async(e,id)=>{
+        e.preventDefault();
+        try {
+            //const idEstudiante=id;
+            //console.log(typeof idEstudiante);
+            Swal.showLoading();// aquí muestra el mensaje y la ventana
+            await axios.delete(`http://localhost:4000/estudiantes/${id}`);
+            obtenerListaTodosEstudiantes(setListaTodosEstudiantes);
+            Swal.close();
+        } catch (error) {
+            console.error('Error al eliminar el usuario',error)
+            Swal.close();
+        }
+    }
 
     return(
         <>
@@ -72,7 +88,9 @@ export const TablaEstudiantes=({listaTodosEstudiantes,setListaTodosEstudiantes,s
                                         <button type="button" className="btn btn-warning"
                                         onClick={()=>handleMostrarModal(estudiante)}
                                         >Actualizar</button>
-                                        <button type="button" className="btn btn-danger">Eliminar</button>
+                                        <button type="button" className="btn btn-danger"
+                                        onClick={(e) => handleEliminarEstudiante(e,estudiante.id)}// necesita como argumento el evento(e) y retorna el e y el id
+                                        >Eliminar</button>
                                     </td>
                             </tr>
                             ))}

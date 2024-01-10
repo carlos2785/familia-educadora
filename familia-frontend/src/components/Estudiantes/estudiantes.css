@@ -33,3 +33,10 @@
         font-size: 20px; /* Ajusta el tamaño de la fuente para dispositivos móviles si es necesario */
     }
 }
+
+.error-span {
+    color: red; /* Cambia "red" al color que prefieras */
+    font-size: 15px;
+    justify-content: center;
+    align-items: center;
+  }

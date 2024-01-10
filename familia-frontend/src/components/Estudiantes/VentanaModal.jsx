@@ -1,6 +1,7 @@
 import React,{ useState,useEffect } from "react";
 import axios from 'axios';
 import {obtenerListaTodosEstudiantes} from "./funciones";
+import Swal from 'sweetalert2';
 
 export const VentanaModal = ({close,open,student,setListaTodosEstudiantes,listaTodosEstudiantes})=>{
     const [listaEstudiantes, setListaEstudiantes] = useState([]);
@@ -30,11 +31,14 @@ export const VentanaModal = ({close,open,student,setListaTodosEstudiantes,listaT
         e.preventDefault();
 
         try {
+            Swal.showLoading();// aquí muestra el mensaje y la ventana
             await axios.put(`http://localhost:4000/estudiantes/${student.id}`, nuevosDatos);
+            Swal.close();
             close(); // cerrar la ventana modal
             obtenerListaTodosEstudiantes(setListaTodosEstudiantes);
         } catch (error) {
             console.error('Error al llamar a la API', error);
+            Swal.close();
         }
     };
     

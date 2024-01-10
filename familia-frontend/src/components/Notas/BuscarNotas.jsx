@@ -1,6 +1,6 @@
 import React,{useState} from 'react';
 import axios from 'axios';
-
+import Swal from 'sweetalert2';
 
 export const BuscarNotas=({ selectFecha,selectGrado})=>{
 
@@ -11,12 +11,15 @@ export const BuscarNotas=({ selectFecha,selectGrado})=>{
         e.preventDefault();
 
         try {
+            Swal.showLoading();// aquí muestra el mensaje y la ventana
             const peticionConsulta=await axios.get('http://localhost:4000/consulta',{
                 params: {grado:selectGrado,fecha:selectFecha}
             });
+            Swal.close();
             setDatos(peticionConsulta.data.rows);  
         } catch (error) {
             console.error('Error al llamar a la API', error);
+            Swal.close();
         }
  
     }

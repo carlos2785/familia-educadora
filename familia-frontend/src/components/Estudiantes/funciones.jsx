@@ -1,4 +1,5 @@
 import axios from 'axios';
+import Swal from 'sweetalert2';
 
 export const obtenerFecha=async (setFechas)=>{
     try {
@@ -27,9 +28,12 @@ export const obtenerGrado = async (setGrados) => {
  */
 export const obtenerListaTodosEstudiantes=async(setListaTodosEstudiantes)=>{
     try {
+        Swal.showLoading();// aquí muestra el mensaje y la ventana
         const peticionListaTodosEstudiantes=await axios.get('http://localhost:4000/estudiantes');
+        Swal.close();
         setListaTodosEstudiantes(peticionListaTodosEstudiantes.data);
     } catch (error) {
         console.error("Error al obtener los grados:", error);
+        Swal.close();
     }
 };
