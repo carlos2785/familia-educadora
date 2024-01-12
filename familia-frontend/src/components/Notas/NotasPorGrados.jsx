@@ -37,7 +37,7 @@ export const NotasPorGrados=()=>{
             <div className='container'>
                 <div className="mt-2 mb-2 row row-cols-1 row-cols-md-2 g-4">
                     <div>
-                        <label>
+                        <label className="label-input">
                             Fecha del taller:
                             <select className="form-select" aria-label="Default select example"
                             value={selectFecha} //aquí se guarda la fecha seleccionada
@@ -52,7 +52,7 @@ export const NotasPorGrados=()=>{
                         </label>
                     </div>
                     <div>
-                        <label>
+                        <label className="label-input">
                             Selecciona el grado:
                             <select className="form-select" aria-label="Default select example"
                             value={selectGrado} //aquí se guarda la fecha seleccionada

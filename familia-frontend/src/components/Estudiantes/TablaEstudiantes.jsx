@@ -12,9 +12,9 @@ export const TablaEstudiantes=({listaTodosEstudiantes,setListaTodosEstudiantes,s
     const [estudianteSeleccionado, setEstudianteSeleccionado] = useState(null);
     const [modalCrear,setModalCrear]=useState(false);
 
-    useEffect(()=>{
+/*     useEffect(()=>{
         obtenerListaTodosEstudiantes(setListaTodosEstudiantes);
-    },[setListaTodosEstudiantes]); 
+    },[setListaTodosEstudiantes]);  */
 
     //console.log("Datos de listaTodosEstudiantes:", listaTodosEstudiantes);    
     const estudiantesFiltrados = useMemo(() => {//useMemo=se ejecuta solo cuando selectgrado cambia y mantiene ese valor hasta que haya algun cambio

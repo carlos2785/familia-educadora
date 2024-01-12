@@ -2,11 +2,8 @@
     font-weight: bold;
     color: rgb(8, 8, 8);
     font-size: 15px;
+    text-align: center;
 }
-.btn.btn-warning{
-    margin: 5px;
-}
-
 .CrearBoton {
     background-color: #2d7503;
     box-shadow: 0 5px 25px rgba(97, 218, 250, .5);
@@ -16,7 +13,7 @@
     font-size: 20px;
     position: absolute;
     top: 28%; /* Posiciona el botón en la mitad superior de la pantalla */
-    left: 50%; /* Posiciona el botón en el centro horizontal de la pantalla */
+    left: 60%; /* Posiciona el botón en el centro horizontal de la pantalla */
     transform: translate(-50%, -50%); /* Centra el botón en relación con su propio tamaño */
     font-weight: 700;
     color: #fafafa;
@@ -33,15 +30,8 @@
 }
 @media only screen and (max-width: 600px) {
     .CrearBoton {
-        top: 180px;
+        top: 380px;
         left: 220px;
         font-size: 20px; /* Ajusta el tamaño de la fuente para dispositivos móviles si es necesario */
     }
 }
-
-.error-span {
-    color: red; /* Cambia "red" al color que prefieras */
-    font-size: 15px;
-    justify-content: center;
-    align-items: center;
-  }

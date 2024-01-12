@@ -11,7 +11,7 @@ export const BuscarGrado=({selectGrado,setSelectGrado,grados})=>{
     return(
         <>
             <div>
-                <label>
+                <label className="label-input">
                     Selecciona el grado:
                      <select className="form-select" aria-label="Default select example"
                     value={selectGrado} //aquí se guarda la fecha seleccionada
