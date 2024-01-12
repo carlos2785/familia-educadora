@@ -24,7 +24,7 @@ router.get('/consulta', async function(req,res){
         notas ON notas.id_estudiante = estudiantes.id WHERE estudiantes.grado='${grado}' AND notas.fecha='${fecha}';`
 
         const {rows} = await pool.query(listNotasFechaGRado);
-        res.status(201).send({rows});
+        res.status(200).send({rows});
     } catch (error) {
         console.log(error);
         res.status(400).send('Error al buscar datos');

@@ -12,18 +12,37 @@ const pool = new Pool({
     ssl: { rejectUnauthorized: false }
 });
 
+/////////////GET FILTRADO/////////////////
+router.get('/padres/:id', async function(req,res){
+    const {id}=req.params;
+    const obtenerPadresId=`SELECT *FROM padres WHERE id=${id};`;
+    try {
+        const {rows}=await pool.query(obtenerPadresId);
+        if (rows.length === 0) {
+            // No se encontraron registros con el ID proporcionado
+            res.status(404).send('No se encontraron registros con el ID proporcionado.');
+        } else {
+            // Se encontraron registros, enviarlos en la respuesta
+            res.status(200).send(rows);
+        }
+    } catch (error) {
+        console.log(error);
+       res.status(500).send('Error al cargar los datos'); 
+    }
+});
+
 /////////////GET/////////////////
-router.get('/padres',async function(req,res){
+router.get('/padres',async function(req,res){ //toco cambiar la ruta para manejar los dos endpoints con get
     const listPadres=`select *from padres;`
     
     try{
         const { rows }= await pool.query(listPadres);
-            res.send(rows);
+        res.status(200).send({rows});
     }
     
     catch(err){
         console.error(err);
-        res.status(400).send('Ha ocurrido un error');
+        res.status(500).send('Ha ocurrido un error');
     };
 });
 /////////////////POST//////////////////////
