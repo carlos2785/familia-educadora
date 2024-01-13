@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-d
 import { NotasPorGrados } from "./components/Notas/NotasPorGrados";
 import { ListarEstudiantes } from "./components/Estudiantes/ListarEstudiantes";
 import {ListarPadres} from './components/Padres/ListarPadres';
+import {Registro} from './components/Registro/Registro';
 
 const App = () => {
     return (
@@ -15,6 +16,7 @@ const App = () => {
             <Route exact path='/notas' component={NotasPorGrados} />
             <Route exact path='/estudiantes' component={ListarEstudiantes} />
             <Route exact path='/padres' component={ListarPadres}/>
+            <Route exact path='/registro' component={Registro}/>
       </Switch>
         </Router>
     );
