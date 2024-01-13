@@ -26,7 +26,19 @@ router.get('/estudiantes', async function(req,res){
         res.status(400).send('Ocurrio un error al listar estudiantes');
     }
 });
+//////////GET-ESTUDIANTES//////////////////
+router.get('/estudiantes/:padre',async function(req,res){
+    //const padre=req.query.padre;
+    const listaEstudiantes=`SELECT id,apellidos,nombres,grado FROM estudiantes WHERE id_padres=${req.params.padre};`
 
+    try {
+        const {rows}=await pool.query(listaEstudiantes);
+        res.status(200).send(rows);
+    } catch (error) {
+        console.error();
+        res.status(400).send('Error al obtener los datos');
+    }
+});
 ////////////POST////////////////////////////////////////////
 router.post('/estudiantes', async function(req,res){
     const idEstudiantes=`select COUNT(*) from estudiantes where id=${req.body.id};`

@@ -45,6 +45,7 @@ router.get('/padres',async function(req,res){ //toco cambiar la ruta para maneja
         res.status(500).send('Ha ocurrido un error');
     };
 });
+
 /////////////////POST//////////////////////
 router.post('/padres', async function(req, res) {
     const idExistQuery = `SELECT COUNT(*) FROM padres WHERE id = ${req.body.id};`;
