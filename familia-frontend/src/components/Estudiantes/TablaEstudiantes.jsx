@@ -50,6 +50,11 @@ export const TablaEstudiantes=({listaTodosEstudiantes,setListaTodosEstudiantes,s
             await axios.delete(`http://localhost:4000/estudiantes/${id}`);
             obtenerListaTodosEstudiantes(setListaTodosEstudiantes);
             Swal.close();
+            Swal.fire({
+                icon: 'success',
+                title: 'Uusario eliminado',
+                text: 'El proceso se ha ejecutado correctamente.',
+            });
         } catch (error) {
             console.error('Error al eliminar el usuario',error)
             Swal.close();

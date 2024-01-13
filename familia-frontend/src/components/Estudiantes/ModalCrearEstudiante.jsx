@@ -60,8 +60,8 @@ export const CrearEstudiante=({open1,close1,listaTodosEstudiantes,setListaTodosE
         setErrores(nuevosErrores);
 
         // Enviar datos si no hay errores
-        if (Object.keys(nuevosErrores).length === 0) {
-            // Realizar acción de envío (puede ser una llamada a la API, etc.)
+        if (Object.keys(nuevosErrores).length === 0) {//Object.keys() es una función en JavaScript que toma un objeto como argumento y devuelve un array con las claves (nombres de las propiedades) de ese objeto.
+            // Realizar acción de envío 
             try {
                 Swal.showLoading();// aquí muestra el mensaje y la ventana
                 await axios.post(`http://localhost:4000/estudiantes`, datosEstudiante);
