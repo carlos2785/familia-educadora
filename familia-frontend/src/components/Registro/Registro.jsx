@@ -7,6 +7,7 @@ export const Registro=()=>{
     const [fechaActual, setFechaActual] = useState('');
     const [docPadre,setDocPadre]=useState(null);
     const [estudiantesHijos,setEstudiantesHijos]=useState([]);
+    const [documentoPadreObtenido, setDocumentoPadreObtenido] = useState(false);//saber si se ha obtenido doc del padre
     const inputRef = useRef(null);//Utiliza la referencia para pocicionar el cursor en el input
 
     useEffect(() => {
@@ -27,13 +28,14 @@ export const Registro=()=>{
         if (e.key === 'Enter') {//cuando se presione la tecla enter ejecuta el get
           e.preventDefault();
           const nuevoDocPadre = e.target.value;//toma el documento digitado
-    
+          
           try {
             Swal.showLoading();
             const peticionRegistro = await axios.get(`http://localhost:4000/estudiantes/${nuevoDocPadre}`);
             setEstudiantesHijos(peticionRegistro.data);
             Swal.close();
             // Actualizar el estado del documento del padre de manera directa
+            setDocumentoPadreObtenido(true);//cambia a padre seleccionado
             setDocPadre(nuevoDocPadre);
           } catch (error) {
             console.error('Ha ocurrido un error al obtener los estudiantes', error);
@@ -42,7 +44,47 @@ export const Registro=()=>{
         }
       };
 
-      console.log(estudiantesHijos);
+      const handleRegistrarNotasEstudiantes=async(e)=>{
+        e.preventDefault();
+
+        if (!documentoPadreObtenido) {
+          // Mostrar un mensaje de error indicando que el documento del padre no ha sido obtenido
+          Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'Debes digitar el documento del padre antes de registrar las notas.',
+          });
+          return;
+        }
+        const fecha=fechaActual;
+          let estudiantesNotas = {
+            fecha: fecha,
+            estudiantes: estudiantesHijos.map((estudiante) => ({
+              id_estudiante: estudiante.id,
+              nota: 5,
+            })),
+          };
+          try {
+            Swal.showLoading();
+            await axios.post('http://localhost:4000/registro',estudiantesNotas);
+            Swal.close();
+            Swal.fire({
+              icon: 'success',
+              title: 'Notas registradas',
+              text: 'El proceso se ha ejecutado correctamente.',
+          });
+          // Limpiar el contenido del input y posicionar el cursor
+          setDocPadre(null); // Esto limpia el contenido del input
+          setDocumentoPadreObtenido(false); // Esto indica que el documento del padre no ha sido obtenido
+          inputRef.current.value = ''; // 
+          setTimeout(() => {
+            Swal.close();
+            inputRef.current.focus();
+          }, 1000);
+        } catch (error) {
+          console.error('Error al registrar las notas', error);
+        }
+      };
 
     return (
         <div className="container mt-5">
@@ -75,7 +117,9 @@ export const Registro=()=>{
                     </div>
 
                     <div className="form-group text-center">
-                        <button type="submit" className="btn btn-primary">Registrar</button>
+                        <button type="submit" className="btn btn-primary"
+                        onClick={handleRegistrarNotasEstudiantes}
+                        >Registrar</button>
                     </div>
                 </div>
             </div>

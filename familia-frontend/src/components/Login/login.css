@@ -1,0 +1,65 @@
+body {
+    margin: 0;
+    padding: 0;
+  }
+  
+  .login-container {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(to right, #f4f1bb, #66d7d1); /* Fondo llamativo */
+  }
+  
+  .login-box {
+    text-align: center;
+    background-color: #ffae19; /* Color del contenedor */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Sombra */
+    animation: fadeIn 0.5s ease-in-out; /* Animación de entrada */
+  }
+  
+  .logo-container {
+    margin-bottom: 20px;
+  }
+  
+  .login-form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  label {
+    margin-bottom: 8px;
+    color: #333; /* Color del texto */
+  }
+  
+  input {
+    padding: 8px;
+    margin-bottom: 16px;
+    border: 1px solid #cccccc; /* Color del borde */
+    border-radius: 4px;
+  }
+  
+  button {
+    padding: 10px;
+    background-color: #072c44; /* Color del botón */
+    color: #ffffff; /* Color del texto del botón */
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out; /* Transición de color */
+  }
+  
+  button:hover {
+    background-color: #025e2b; /* Color del botón al pasar el mouse */
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
