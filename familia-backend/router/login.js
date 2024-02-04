@@ -4,7 +4,7 @@ const { Pool } = require('pg');
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
 
-const secretKey = 'Familia.2024.HD';
+const secretKey = process.env.SECRET_KEY;
 
 const pool = new Pool({
   user: process.env.POSTGRES_USER,
