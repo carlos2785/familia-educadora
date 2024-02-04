@@ -16,6 +16,7 @@ conectionBD();
 
 
 /////////////Padres/////////////////
+app.use('',require('./router/login'));
 app.use('',require('./router/padres'));
 app.use('',require('./router/estudiantes'));
 app.use('',require('./router/notas'));
