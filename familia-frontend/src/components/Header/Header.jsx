@@ -1,8 +1,10 @@
 import React from 'react';
-import {NavLink} from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 import './Header.css'
 
-export const Header =()=>{
+export const Header =({ onLogout })=>{
+    const history = useHistory();
+      
     return(
         // El siguiente código es un menú de boostrap 
         <nav className="navbar bg-primary border-bottom border-body navbar-expand-lg" data-bs-theme="dark">
@@ -35,7 +37,16 @@ export const Header =()=>{
                     {/* Mover la opción "Cerrar Sesión" a la derecha */}
                     <ul className="navbar-nav">
                         <li className="nav-item">
-                            <NavLink className="nav-link" activeClassName="active" exact aria-current="page" to="/cerrar-sesion">Cerrar Sesión</NavLink>
+                        <a
+                            href="/cerrar-sesion"
+                            className="nav-link"
+                            onClick={(e) => {
+                                e.preventDefault();
+                                onLogout();
+                            }}
+                        >
+                            Cerrar Sesión
+                        </a>
                         </li>
                     </ul>
                 </div>

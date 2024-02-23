@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import './login.css';
+import axios from 'axios'
 import logoImage from '../Header/colegio.png'; // Reemplaza con el nombre de tu archivo de imagen
+import { useHistory } from 'react-router-dom';
 
-
-export const Login = () => {
+export const Login = ({ onLogin }) => {
+  const history = useHistory(); // manejo del historial de navegación
   const [datosLogin,setDatosLogin]=useState({ // variable de estado para datos vacios del formulario
     username: '',
     password: ''
@@ -17,9 +19,27 @@ export const Login = () => {
     });
   };
 
+    
   const handleIngresar=async(e)=>{
     e.preventDefault();
-    console.log(datosLogin);
+    
+    try {
+      const response = await axios.post('http://localhost:4000/login', datosLogin);
+      if (response.status === 200) {
+        const data = response.data;
+        // Almacena el token en el localStorage
+        localStorage.setItem('token', data.token);
+        // Llama a la función onLogin del componente padre (App.js)
+        onLogin(data.token);
+        // Redirige a la ruta deseada, por ejemplo, '/otra-ruta'
+        history.push('/registro'); // Asegúrate de tener 'history' disponible (puedes usar useHistory hook de React Router)
+      } else {
+        // Manejar errores de autenticación
+        console.error('Error al iniciar sesión:', response.statusText);
+      }
+    } catch (error) {
+      console.error('Error de red:', error.message);
+    }
   };
   
   return (
