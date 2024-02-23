@@ -26,10 +26,10 @@ router.post('/login', async function (req, res) {
     } else {
       const user = result.rows[0];// usuario encontrado
 
-      // Comparar la contraseña suministrada con las de la BD sin encriptar
+      // Comparar la contraseña suministrada con las de la BD 
       if (password === user.pass) {
         // Si la contraseña es válida, genera un token JWT
-        const token = jwt.sign({ username: user.usuario }, secretKey, { expiresIn: '1m' });
+        const token = jwt.sign({ username: user.usuario }, secretKey, { expiresIn: '30m' });
         // Devuelve el token en la respuesta
         return res.json({ token });
       } else {
